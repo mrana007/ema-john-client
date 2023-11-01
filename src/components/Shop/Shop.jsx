@@ -3,11 +3,18 @@ import { addToDb, deleteShoppingCart, getShoppingCart } from '../../utilities/fa
 import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
 import './Shop.css';
-import { Link } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 
 const Shop = () => {
     const [products, setProducts] = useState([]);
-    const [cart, setCart] = useState([])
+    const [cart, setCart] = useState([]);
+    const { count } = useLoaderData();
+
+    /**rana
+     * DONE 1: get total number of products
+     * TODO 2: number of items per page
+     * 
+    */
 
     useEffect(() => {
         fetch('http://localhost:5000/products')
