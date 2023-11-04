@@ -8,12 +8,23 @@ import { Link, useLoaderData } from 'react-router-dom';
 const Shop = () => {
     const [products, setProducts] = useState([]);
     const [cart, setCart] = useState([]);
-    const { count } = useLoaderData();
+    const {count} = useLoaderData();
+    // console.log(count);
+    const itemPerPage = 10;
+    const numberOfPages = Math.ceil(count / itemPerPage);
+
+    // const pages = [];
+    // for(let i = 0; i<numberOfPages; i++){
+    //     pages.push(i)
+    // }
+    // console.log(pages);
+    const pages = [...Array(numberOfPages).keys()]
+    console.log(pages);
+
 
     /**rana
-     * DONE 1: get total number of products
-     * TODO 2: number of items per page
-     * 
+     * DONE 1: get the total number of products
+     * TODO 2: number of items per page dynamic
     */
 
     useEffect(() => {
@@ -88,6 +99,11 @@ const Shop = () => {
                         <button className='btn-proceed'>Review Order</button>
                     </Link>
                 </Cart>
+            </div>
+            <div className='pagination'>
+                {
+                    pages.map(page => <button key={page}>{page}</button>)
+                }
             </div>
         </div>
     );
